@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <center>
+            <h1>Obteniendo Datos</h1>
+        </center>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-2"></div>
+        <div class="col-12 col-md-8 table-responsive">
+            <table class="table table-hover border shadow text-center">
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>Nombre</td>
+                        <td>Apellido</td>
+                        <td>Telefono</td>
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <?php while ($rows = mysqli_fetch_assoc($getData)) : ?>
+                            <td><?php echo $rows['id']; ?></td>
+                            <td><?php echo $rows['nombre']; ?></td>
+                            <td><?php echo $rows['apellido']; ?></td>
+                            <td><?php echo $rows['telefono']; ?></td>
+                        <?php endwhile; ?>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 col-md-2"></div>
+    </div>
+</div>
