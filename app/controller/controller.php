@@ -20,6 +20,7 @@ class controller
         $this->crud  = new crud();
         $this->query = new query();
     }
+
     public function inicio()
     {
         $variable = 'cualquier cosa';
@@ -104,9 +105,6 @@ class controller
 
             
             $query = $this->query->UpdateData($datos);
-            echo '<pre>';
-            print_r($query);
-            echo '</pre>';
             $this->crud->Update($query);
             header('Location:?controller=getData');
         }else {
