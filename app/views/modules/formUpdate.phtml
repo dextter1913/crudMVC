@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-1 col-md-2"></div>
+        <div class="col-12 col-sm-10 col-md-8 p-4">
+            <form action="?controller=procesoUpdate" method="post">
+                <input type="text" name="id" class="form-control m-2" value="<?php echo $id; ?>" readonly>
+                <input type="text" name="nombre" id="nombre" class="form-control m-2" value="<?php echo $row['nombre']; ?>">
+                <input type="text" name="apellido" id="" class="form-control m-2" value="<?php echo $row['apellido']; ?>">
+                <input type="text" name="telefono" id="" class="form-control m-2" value="<?php echo $row['telefono']; ?>">
+                <input type="submit" value="Modificar" class="btn btn-success">
+            </form>
+        </div>
+        <div class="col-12 col-sm-1 col-md-2"></div>
+    </div>
+</div>

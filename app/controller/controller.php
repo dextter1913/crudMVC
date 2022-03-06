@@ -42,20 +42,75 @@ class controller
             $telefono = $_POST['telefono'];
             $query = $this->query->insertData($nombre, $apellido, $telefono);
             $this->crud->Create($query);
-            superior();
-            require_once 'app/views/mensajes/mensajeinsert.html';
-            inferior();
+            header('Location:?controller=getData');
         }
     }
 
+    /**
+     * OBTENIENDO DATOS
+     */
     public function getData()
     {
         $query = $this->query->getAllData();
         $getData = $this->crud->Read($query);
-
         $rows = mysqli_fetch_assoc($getData);
         superior();
         require_once 'app/views/modules/table.phtml';
         inferior();
+    }
+
+    /**
+     * ELIMINANDO DATOS
+     */
+    public  function deleteData()
+    {
+        $id = '';
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $query = $this->query->deleteData($id);
+            $this->crud->Delete($query);
+            header('Location:?controller=getData');
+        } else {
+            header('Location:?controller=getData');
+        }
+    }
+
+    /**
+     * MODIFICANDO DATOS
+     */
+    public function UpdateData()
+    {
+        $id = $_GET['id'];
+
+        $query = $this->query->getData($id);
+        $data = $this->crud->Read($query);
+        $row = mysqli_fetch_assoc($data);
+        superior();
+        require_once 'app/views/modules/formUpdate.phtml';
+        inferior();
+    }
+
+    public function procesoUpdate()
+    {
+        $datos = [];
+        if (isset($_POST['id'])) {
+            $datos = [
+                'id'       => $_POST['id'],
+                'nombre'   => $_POST['nombre'],
+                'apellido' => $_POST['apellido'],
+                'telefono' => $_POST['telefono']
+            ];
+
+            
+            $query = $this->query->UpdateData($datos);
+            echo '<pre>';
+            print_r($query);
+            echo '</pre>';
+            $this->crud->Update($query);
+            header('Location:?controller=getData');
+        }else {
+            header('Location:?controller=getData');
+        }
     }
 }

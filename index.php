@@ -1,4 +1,5 @@
 <?php 
+error_reporting(E_ALL);
 require_once 'app/controller/controller.php';
 
 $controller = $_GET['controller'];

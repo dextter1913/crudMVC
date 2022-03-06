@@ -18,14 +18,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <?php while ($rows = mysqli_fetch_assoc($getData)) : ?>
+                    <?php while ($rows = mysqli_fetch_assoc($getData)) : ?>
+                        <tr>
                             <td><?php echo $rows['id']; ?></td>
                             <td><?php echo $rows['nombre']; ?></td>
                             <td><?php echo $rows['apellido']; ?></td>
                             <td><?php echo $rows['telefono']; ?></td>
-                        <?php endwhile; ?>
-                    </tr>
+                            <td>
+                                <a href="?controller=deleteData&id=<?php echo $rows['id']; ?>">
+                                    <span class="btn btn-danger btn-sm fa-solid fa-trash-can"></span></a>
+                                <a href="?controller=updateData&id=<?php echo $rows['id']; ?>">
+                                    <span class="btn btn-primary btn-sm fa-solid fa-pen"></span></a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
                 </tbody>
             </table>
         </div>
